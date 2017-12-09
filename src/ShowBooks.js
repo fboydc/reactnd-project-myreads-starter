@@ -17,7 +17,7 @@ class ShowBooks extends Component {
 
 	render(){
 
-		
+
 		const shelfInfo = {
 			shelf_1: {
 				title: "wantToRead",
