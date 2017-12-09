@@ -8,24 +8,51 @@ import BookShelf from './BookShelf';
 class ShowBooks extends Component {
 
 
+
+
+
+
+
+
+
 	render(){
 
-		console.log(this.props.books);
-		let shelves = {
+		
+		const shelfInfo = {
 			shelf_1: {
 				title: "wantToRead",
-				label: "Want To Read",
+				label: "Want To Read"
+			},
+
+			shelf_2: {
+				title: "currentlyReading",
+				label: "Currently Reading"
+			},
+
+			shelf_3: {
+				title: "read",
+				label: "Read"
+			},
+
+
+
+		}
+
+		let shelves = {
+			shelf_1: {
+				title: shelfInfo.shelf_1.title,
+				label: shelfInfo.shelf_1.label,
 				books: []
 			},
 			shelf_2: {
-				title: "currentlyReading",
-				label: "Currently Reading",
+				title: shelfInfo.shelf_2.title,
+				label: shelfInfo.shelf_2.label,
 				books: []
 
 			},
 			shelf_3: {
-				title: "read",
-				label: "Read",
+				title: shelfInfo.shelf_3.title,
+				label: shelfInfo.shelf_3.label,
 				books: []
 
 			}
@@ -56,9 +83,9 @@ class ShowBooks extends Component {
             </div>
             <div className="list-books-content">
               <div>
-              	<BookShelf title={shelves.shelf_1.label} books={shelves.shelf_1.books}/>
-              	<BookShelf title={shelves.shelf_2.label} books={shelves.shelf_2.books}/>
-              	<BookShelf title={shelves.shelf_3.label} books={shelves.shelf_3.books}/>
+              	<BookShelf title={shelves.shelf_1.label} books={shelves.shelf_1.books} shelfInfo={shelfInfo} updateBooks={this.props.updateBooks}/>
+              	<BookShelf title={shelves.shelf_2.label} books={shelves.shelf_2.books} shelfInfo={shelfInfo} updateBooks={this.props.updateBooks}/>
+              	<BookShelf title={shelves.shelf_3.label} books={shelves.shelf_3.books} shelfInfo={shelfInfo} updateBooks={this.props.updateBooks}/>
               </div>
             </div>
             <div className="open-search">

@@ -10,6 +10,9 @@ class BookShelf extends Component {
 	render(){
 
 		let books = this.props.books;
+    let shelves = this.props.shelfInfo;
+    let updateBooks = this.props.updateBooks;
+    //console.log(this.props);
 
 
 		return (
@@ -18,7 +21,7 @@ class BookShelf extends Component {
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                     	 { books.map(
-                    	 		book => (<li key={book.id}><Book book={book} /></li>)
+                    	 		book => (<li key={book.id}><Book book={book} shelves={shelves} updateBooks={updateBooks}/></li>)
                     	 	)
                     	  }
                     </ol>
