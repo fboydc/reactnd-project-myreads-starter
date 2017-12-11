@@ -9,10 +9,18 @@ class BookShelf extends Component {
 
 	render(){
 
-		let books = this.props.books;
+		let books = this.props.books.map((book)=> { return ({
+                id: book.id,
+                title: book.title,
+                thumbnail: book.imageLinks.thumbnail,
+                author:book.authors[0],
+                shelf: book.shelf
+            })});
     let shelves = this.props.shelfInfo;
     let updateBooks = this.props.updateBooks;
-    //console.log(this.props);
+
+    console.log("books: ");
+    console.log(books);
 
 
 		return (
@@ -20,7 +28,7 @@ class BookShelf extends Component {
                   <h2 className="bookshelf-title">{this.props.title}</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
-                    	 { books.map(
+                    	 { books.map( 
                     	 		book => (<li key={book.id}><Book book={book} shelves={shelves} updateBooks={updateBooks}/></li>)
                     	 	)
                     	  }

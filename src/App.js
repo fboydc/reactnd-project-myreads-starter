@@ -50,14 +50,37 @@ class BooksApp extends React.Component {
 
   }
 
+
+  
+
   render() {
+
+    const shelfInfo = {
+      shelf_1: {
+        title: "wantToRead",
+        label: "Want To Read"
+      },
+
+      shelf_2: {
+        title: "currentlyReading",
+        label: "Currently Reading"
+      },
+
+      shelf_3: {
+        title: "read",
+        label: "Read"
+      },
+
+    }
+
+
     return (
       <div className="app">
         <Route exact path="/" render={() => (
-          <ShowBooks books={this.state.books} updateBooks={this.updateBooks.bind(this)}/>
+          <ShowBooks books={this.state.books} updateBooks={this.updateBooks.bind(this)} shelfInfo={shelfInfo}/>
         )}/>
         <Route path="/search" render={()=>(
-          <SearchBook/>
+          <SearchBook shelfInfo={shelfInfo}/>
         )}/>
       </div>
     )

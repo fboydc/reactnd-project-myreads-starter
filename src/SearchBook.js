@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
+import Book from './Book'
 
 
 class SearchBook extends Component {
@@ -11,27 +12,34 @@ class SearchBook extends Component {
     books: []
   }
 
-  updateQuery = (query) => {
-    this.setState({query: query.trim()});
-  }
-
-  updateBooks = (query) => {
-    BooksAPI.search(query).then((data)=>{
-        //console.log("here");
-        this.setState({books: data});
-        //console.log('here');
-      });
-  }
-
-  render(){
-
-    const { query, books } = this.state;
-
+  search = (query) => {
     if(query){
-      this.updateBooks(query);
+         this.setState({query: query.trim()});
+         BooksAPI.search(query).then((data)=>{
+              if(!data.error){
+
+                  this.setState({books: data.map((book) => {
+                       console.log(book);
+                       return {
+                        id: book.id,
+                        title: book.title,
+                        thumbnail: book.imageLinks.thumbnail,
+                        author: book.authors ? book.authors[0] : "No data Available",
+                        shelf: book.shelf ? book.shelf : "none"
+                      }   
+                  })});
+               }
+            });
+          }
     }
 
 
+
+  render(){
+
+    let shelves = this.props.shelfInfo;
+
+    const { books } = this.state;
     return(
         <div className="search-books">
             <div className="search-books-bar">
@@ -46,14 +54,17 @@ class SearchBook extends Component {
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
 
-
-
-                <input type="text" placeholder="Search by title or author" onChange={ (event)=>this.updateQuery(event.target.value) }/>
+                <input type="text" placeholder="Search by title or author" onChange={ (event)=>this.search(event.target.value) }/>
 
               </div>
             </div>
             <div className="search-books-results">
-              <ol className="books-grid"></ol>
+              <ol className="books-grid">
+              {books.map((book) => {
+                    return <li key={book.id}><Book book={book} shelves={shelves}/></li>
+                  })}
+                  
+              </ol>
             </div>
           </div>
       )
