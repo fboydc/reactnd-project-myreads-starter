@@ -4,6 +4,7 @@ import ShowBooks from './ShowBooks';
 import SearchBook from './SearchBook';
 import * as BooksAPI from './BooksAPI';
 import Shelf from './BookShelfModel';
+import BookModel from './BookModel';
 import './App.css'
 
 
@@ -54,7 +55,7 @@ class BooksApp extends React.Component {
          for(let shelf in this.shelves){
             let current = this.shelves[shelf];
             if(book.shelf === current.title){
-              current.addBook(book);
+              current.addBook(new BookModel(book.id, book.title, book.imageLinks.thumbnail, book.authors[0], book.shelf));
             }
 
          }
@@ -111,7 +112,7 @@ class BooksApp extends React.Component {
             <ShowBooks  updateBooks={this.updateBooks.bind(this)} shelves={this.state.shelves} />
           )}/>
         <Route path="/search" render={()=>(
-            <SearchBook shelves={this.state.shelves}/>
+            <SearchBook updateBooks={this.updateBooks.bind(this)} shelves={this.state.shelves}/>
         )}/>
       </div>
     )

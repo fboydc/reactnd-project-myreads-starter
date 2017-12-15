@@ -11,7 +11,6 @@ class Book extends Component {
 
 		BooksAPI.update(this.props.book, val).then((data)=>{
 			this.props.updateBooks(this.props.book, val);
-			console.log(data);
 		});
 	}
 
@@ -19,9 +18,8 @@ class Book extends Component {
 
 
 
-	render(){
 
-		console.log(this.props.book);
+	render(){
 
 
 		return (
@@ -29,7 +27,7 @@ class Book extends Component {
 
 	            <div className="book">
 	                <div className="book-top">
-	                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url('+this.props.book.imageLinks.thumbnail+')' }}></div>
+	                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url('+this.props.book.thumbnail+')' }}></div>
 	                        <div className="book-shelf-changer">
 	                              <select  onChange={()=>{
 	                                						this.switchShelf();
@@ -42,7 +40,7 @@ class Book extends Component {
 	                            </div>
 	                        </div>
 	                    <div className="book-title">{this.props.book.title}</div>
-	                <div className="book-authors">{this.props.book.authors[0]}</div>
+	                <div className="book-authors">{this.props.book.author}</div>
 	            </div>
 
 			)
