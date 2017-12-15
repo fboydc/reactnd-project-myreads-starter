@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as BooksAPI from './BooksAPI';
+import {notify} from 'react-notify-toast';
 
 class Book extends Component {
 
@@ -8,7 +9,7 @@ class Book extends Component {
 	switchShelf(){
 		let select = document.getElementById(this.props.book.id);
 		let val = select.options[select.selectedIndex].value;
-
+		notify.show("making changes...please wait.", "info", 1000, "#FFFFFF");
 		BooksAPI.update(this.props.book, val).then((data)=>{
 			this.props.updateBooks(this.props.book, val);
 		});
