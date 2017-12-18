@@ -1,5 +1,17 @@
+/**********************************************************************************************************
+Component: BookShelf
+Props received (see prop-types):
+
+1. shelf - Shelf
+2. updateBooks - function
+
+Child Components:
+1. Book* - props passed: book (Book), updateBooks (function), options (array <object>)
+
+************************************************************************************************************/
+
 import React, { Component } from 'react';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Book from './Book';
 
 
@@ -27,6 +39,12 @@ class BookShelf extends Component {
 
 }
 
+
+
+BookShelf.propTypes = {
+  shelf: PropTypes.object,
+  updateBooks: PropTypes.func
+}
 
 
 export default BookShelf;
