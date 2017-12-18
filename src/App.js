@@ -1,6 +1,6 @@
 /****************************************
 Component: BooksApp
-Properties:
+Defined Properties:
 1. Name:Shelves - Array<Shelf>
    Description: Contains our shelf objects, which will be our
    encapsulating entity for all our data.
@@ -65,9 +65,10 @@ class BooksApp extends React.Component {
   Parameters: none
   returns: nothing
   Description:
-  Will iterate through every shelf in the shelves property and will
-  add a shelf option object to its shelfOptions property. This is
-  responsible for showing the different selection options when click
+  Will iterate through every shelf in BooksApps shelves property and will
+  add a shelf option object to its shelfOptions property. The number of 
+  shelf option objects is proprtional to the number of shelves specified.
+  This is responsible for showing the different selection options when click
   on the change shelf icon ("+");
   *********************************************************************/
   addOptions(){
@@ -82,7 +83,22 @@ class BooksApp extends React.Component {
 
 
 
+  /********************************************************************
+  Method: updateBooks
+  Parameters: Book, String 
+  returns: nothing
+  Description:
+  This method runs after the completion of the booksAPI AJAX call "update".
+  Said ajax call is performed by the Book component, which uses a javascript 
+  promise to call this method. 
 
+  updateBooks simply removes a book from a shelf if present, and adds it
+  to the specified shelf by using shelfTitle as book shelf's title criteria.
+  If the value does not match any shelf present in the BooksApp component's
+  shelves property, it will simply remove the book from it's shelf, set its 
+  shelf value to whatever the shelfTitle paramter value is, and will be left
+  to be garbage collected.
+  *********************************************************************/
   updateBooks(bookToChange, shelfTitle){
 
 
@@ -114,7 +130,15 @@ class BooksApp extends React.Component {
   }
 
 
-
+/********************************************************************
+  State
+  Properties:
+  1. Shelves - Array<Shelf>
+  	contains the actual shelves that we see and interact with in our application.
+  	The shelf objects stored in the shelves property are loaded once the application
+  	loads (refreshing or first entering the app in the browser does this), or a book
+  	is added or removed to one of the shelf objects. 
+  *********************************************************************/
   state = {
     /**
      * TODO: Instead of using this state variable to keep track of which page
@@ -126,8 +150,15 @@ class BooksApp extends React.Component {
 
   }
 
+//---------------------------- REACT METHODS -----------------------------------------------//
 
-
+/********************************************************************
+  Name: componentWillMount
+  Description:
+  Executes getAll AJAX call and adds the books in their respective shelf,
+  contained in the BooksApp component. It will also set the shelves state
+  to whatever is contained inside BookApp's shelves property.
+  *********************************************************************/
   componentWillMount(){
 
     BooksAPI.getAll().then((books)=>{
@@ -155,7 +186,18 @@ class BooksApp extends React.Component {
 
 
 
+/********************************************************************
+  Name: render
+  Description:
+  For the moment we have two views, therefore we will have to route elements
+  to show these two seperate views in the same page, yet with different urls.
 
+  Child Components
+  1. Render
+  	1.1 ShowBooks - Props Passed: updateBooks (function), shelves (array<Shelf>)
+  2. Render
+  	2.1 SearchBoos - Props passed: updateBooks (function), shelves (array<Shelf>)
+  *********************************************************************/
 
   render() {
 

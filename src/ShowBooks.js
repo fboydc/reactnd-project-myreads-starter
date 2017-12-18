@@ -1,3 +1,16 @@
+/********************************************
+Component: ShowBooks
+Props received:
+
+1. shelves - array<Shelf>
+2. updateBooks - function
+
+Child Components:
+1.BookShelf* - props passed: shelf (Shelf), key (String), updateBooks (function)
+Note: The number of BookShelf children will be equal to the size of the state shelves property
+
+2. 
+*********************************************/
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 //import PropTypes from 'prop-types';
