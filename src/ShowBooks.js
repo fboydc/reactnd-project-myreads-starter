@@ -5,13 +5,11 @@ Props received (see prop-types):
 1. shelves - array<Shelf>
 2. updateBooks - function
 
-Child Components:
-1.BookShelf* - props passed: shelf (Shelf), key (String), updateBooks (function)
-Note: The number of BookShelf children will be equal to the size of the state shelves property
+Methods:
+none
 
-2. Link - props passed: String.
-Note: This is a component defined by the react-router-dom package. It is a third party library which
-handles our navigation. For more information on please visit https://www.npmjs.com/package/react-router-dom.
+React Methods:
+render - see method description below
 ************************************************************************************************************/
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
@@ -28,7 +26,14 @@ class ShowBooks extends Component {
  /********************************************************************
   Name: render
   Description:
-  Renders our template for our book shelves.
+  renders the template for our Shelf objects.
+  Child Components:
+  1.BookShelf* - props passed: shelf (Shelf), key (String), updateBooks (function)
+  	Note: The number of BookShelf children will be equal to the size of the state shelves property
+
+  2. Link - props passed: String. - redirects to the search page (/search).
+     Note: This is a component defined by the react-router-dom package. It is a third party library which
+	 handles our navigation. For more information on please visit https://www.npmjs.com/package/react-router-dom.
   *********************************************************************/
 	render(){
 

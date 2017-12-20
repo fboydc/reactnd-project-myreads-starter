@@ -1,11 +1,41 @@
+/**********************************************************************************************************
+Component: Book
+Props received (see prop-types):
+
+1. book - Book
+2. updateBooks - function
+3. options - array <object>
+
+Methods:
+switchShelf - see method description below
+
+React methods:
+render - see method description below
+
+************************************************************************************************************/
 import React, { Component } from 'react';
 import * as BooksAPI from './BooksAPI';
+import PropTypes from 'prop-types';
 import {notify} from 'react-notify-toast';
 
 class Book extends Component {
 
 
-
+	/********************************************************************
+	Method: switchShelf
+	Parameters: none
+	Returns: nothing
+	Description:
+	Updates the backend placing our book in the new shelf,
+	and then makes the call to updateBooks method inside App.js.
+	notice that the data from our application is only fetched once
+	(on load/reload), however our data will be persistent since we
+	are updating our backend/frontend simoultaneously. This allows
+	us to save some latency which might affect our application's
+	performance. We also use react-notify-toast library to give the
+	user some insight when our fetch is awaiting a succesful server
+	response.
+	*********************************************************************/
 	switchShelf(){
 		let select = document.getElementById(this.props.book.id);
 		let val = select.options[select.selectedIndex].value;
@@ -19,7 +49,13 @@ class Book extends Component {
 
 
 
-
+ /***************************************************************************************
+  Name: render
+  Description:
+  Renders our Book object with its defined props.
+  Child Components:
+  None. This is the bottom of our components tree.
+  **************************************************************************************/
 	render(){
 
 
@@ -46,6 +82,12 @@ class Book extends Component {
 
 			)
 	}
+}
+
+Book.propTypes = {
+	book: PropTypes.object,
+	updateBooks: PropTypes.func,
+	options: PropTypes.arrayOf(PropTypes.object)
 }
 
 export default Book;

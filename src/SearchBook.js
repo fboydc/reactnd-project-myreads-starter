@@ -1,26 +1,65 @@
+/**********************************************************************************************************
+Component: SearchBook
+Props received (see prop-types):
+
+1. shelves - array<Shelf>
+2. updateBooks - function
+
+Methods:
+
+search - see method description below
+searchShelf - see method description below
+
+React Methods:
+
+componentDidMount - see method description below
+render - see method description below
+
+
+state:
+query - String
+books - array <Books>
+************************************************************************************************************/
+
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
+import PropTypes from 'prop-types';
 import Book from './Book';
 import BookModel from './BookModel';
 
 
 class SearchBook extends Component {
 
+  /********************************************************************
+  State
+  Properties:
+  1. query - String
+     Description: Contains the query typed by the user when searching for books.
+  2. books - array <Book>
+     Description: Contains all the books fetched from with BooksAPI from our backend.
+     Books will be filtered dependending on the value of the query property.
 
+  *********************************************************************/
   state = {
     query: '',
-    books: [],
-    loading: ''
-  }
-
-  componentDidMount(){
-    this.loader = document.getElementById("load_spinner");
-    this.grid = document.getElementById("books_grid");
+    books: []
   }
 
 
 
+
+ /********************************************************************
+  Method: search
+  Parameters: String
+  returns: nothing
+  Description:
+  Performs a fetch with the query typed by the user, creates an array of BookModels
+  with the information retreived, and sets the state book property to the new
+  BookModels array. Also, note that we change some of the style from our book
+  containing grid and our loader gif container in order to show a more elegant UI
+  to the user.
+  *********************************************************************/
   search = (query) => {
 
     if(query){
@@ -50,7 +89,14 @@ class SearchBook extends Component {
           }
     }
 
-
+ /********************************************************************
+  Method: searchShelf
+  Parameters: String
+  returns: String
+  Description:
+  Helper method for 'search'; searches for a book in every shelf,
+  using the book id. Returns the shelf title.
+  *********************************************************************/
   searchShelf = (id) => {
 
     let title = "none";
@@ -66,7 +112,32 @@ class SearchBook extends Component {
     return title;
   }
 
+  //------------------------- REACT METHODS -----------------------------//
 
+
+  /********************************************************************
+  Name: componentDidMount
+  Description:
+  Grabs our books grid and spinner container elements. This allow us to
+  prevent a DOM read/write cycle in our 'search' method.
+  *********************************************************************/
+  componentDidMount(){
+    this.loader = document.getElementById("load_spinner");
+    this.grid = document.getElementById("books_grid");
+  }
+
+  /***********************************************************************************
+  Name: render
+  Description:
+  Renders our all the books passed from our BooksApp component.
+
+  Child Components:
+  Book* - props passed: book (Book), updateBooks (function), options (array <object>).
+  Link - props passed: String. - Redirects back to the main page (/).
+  Note: This is a component defined by the react-router-dom package. It is a third party library which
+  handles our navigation. For more information on please visit https://www.npmjs.com/package/react-router-dom.
+  Goes bac
+  ************************************************************************************/
   render(){
 
     //let shelves = this.props.shelfInfo;
@@ -80,16 +151,6 @@ class SearchBook extends Component {
             <div className="search-books-bar">
               <Link className="close-search" to="/">Close</Link>
               <div className="search-books-input-wrapper">
-                {
-                /*
-                  NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                  You can find these search terms here:
-                  https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-                  However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                  you don't find a specific author or title. Every search is limited by search terms.
-                */
-                }
 
                 <input type="text" placeholder="Search by title or author" onChange={ (event)=>this.search(event.target.value) }/>
 
@@ -107,6 +168,12 @@ class SearchBook extends Component {
           </div>
       )
   }
+}
+
+
+SearchBook.propTypes = {
+  shelves: PropTypes.arrayOf(PropTypes.object),
+  updateBooks: PropTypes.func
 }
 
 export default SearchBook;

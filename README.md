@@ -1,92 +1,83 @@
-# MyReads Project
+# My Reads
 
-This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
+**My Reads** is your ultimate book reading app. It provides you with an organized virtual book shelf, which you can use to organize your reads, to-reads, and currently reading. Our current version only contains three book shelves: "Want to Read", "Currently Reading", and "Reads". However,it is robust enough to support N number of book shelves.
+** **
+## Getting Started
 
-Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
+### Requirements ###
 
-## TL;DR
+#### Browser Requirements ####
+Please get the latest version of **Google Chrome**, **Safari**, or **Firefox**.
 
-To get started developing right away:
+#### Required Libraries ####
+These dependencies are required by the application. Please make sure you have **Node** installed in your machine, otherwise please do so before doing anything else. For more information on how to install node, please see **"How do I Install the Application?"** section. These dependencies are already included in package.json, so installation steps required to install them are minimal:
+1.**Prop Types**
+2. **React**
+3. **React-dom**
+4. **react-router-dom**
+5. **react-notify-toast**
 
-* install all project dependencies with `npm install`
-* start the development server with `npm start`
 
-## What You're Getting
-```bash
-├── CONTRIBUTING.md
-├── README.md - This file.
-├── SEARCH_TERMS.md # The whitelisted short collection of available search terms for you to use with your app.
-├── package.json # npm package manager file. It's unlikely that you'll need to modify this.
-├── public
-│   ├── favicon.ico # React Icon, You may change if you wish.
-│   └── index.html # DO NOT MODIFY
-└── src
-    ├── App.css # Styles for your app. Feel free to customize this as you desire.
-    ├── App.js # This is the root of your app. Contains static HTML right now.
-    ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
-    ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
-    ├── icons # Helpful images for your app. Use at your discretion.
-    │   ├── add.svg
-    │   ├── arrow-back.svg
-    │   └── arrow-drop-down.svg
-    ├── index.css # Global styles. You probably won't need to change anything here.
-    └── index.js # You should not need to modify this file. It is used for DOM rendering only.
-```
+Please see the **Libraries** section for more information.
+** **
+#### How do I Install the Application? ####
 
-Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
+**Install Node**
+This application uses NPM, therefore it is required that you install it Node.js in your local machine. Please go [here](https://nodejs.org/en/download/) and download the installer for your OS. NPM is included with Node, so when you install Node you will get NPM automatically.
 
-## Backend Server
+**Clone This Repository/Download Resources**
+Make a clone of this repository in your local machine using your terminal/shell/bash/command prompt.
 
-To simplify your development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
+**Install Dependencies**
+After cloning a copy in your machine, all you need to do is `cd` to your the root directory of the application (In this case**reactnd-project-myreads-starter\**) and type the command  `npm install`. This will install all the required libraries specified above, and you are now ready to run the application.
 
-* [`getAll`](#getall)
-* [`update`](#update)
-* [`search`](#search)
+** **
+### How do I Run The Application? ###
 
-### `getAll`
+Our application is built using the create-react-app build tool, which includes the create-react npm package. This package allows us to run a development server, which comes handy when testing/developing. To run our application, `cd` to the root directory (in this case **reactnd-project-myreads-starter**\/) and type the following from your terminal/bash/shell/command prompt: `npm start`. A development web server should be launched at **port 3000**, therefore to access the application you should type in the following URL in your browser:
 
-Method Signature:
+http://localhost:3000/
 
-```js
-getAll()
-```
+This should take you to the initial page of the application.
 
-* Returns a Promise which resolves to a JSON object containing a collection of book objects.
-* This collection represents the books currently in the bookshelves in your app.
+** **
+### How Do I Use This Application? ###
 
-### `update`
+You will have three sections in the landing page: each section represents a book shelf. The three sections labeled: "Want to Read", "Currently Reading", and "Read" contain books which fall under this category. You can move books between shelves by clicking the down-pointing arrow in each book and selecting the appropiate shelf in the side menu. If you which to remove a book from the shelf without adding it into any other shelf, just select the "none" option on the side menu.
 
-Method Signature:
+You can also add a new book to any of your shelves. To do so, click on the (+) widget at the right-bottom corner of your screen and this will take you to the search page. You can also type /search at the end of the URL in your address bar. You will see a search bar, in which you can type the book you are looking for. **Please we wary:** Our backend API will only present results for the following search terms:
 
-```js
-update(book, shelf)
-```
+'Android', 'Art', 'Artificial Intelligence', 'Astronomy', 'Austen', 'Baseball', 'Basketball', 'Bhagat', 'Biography', 'Brief', 'Business', 'Camus', 'Cervantes', 'Christie', 'Classics', 'Comics', 'Cook', 'Cricket', 'Cycling', 'Desai', 'Design', 'Development', 'Digital Marketing', 'Drama', 'Drawing', 'Dumas', 'Education', 'Everything', 'Fantasy', 'Film', 'Finance', 'First', 'Fitness', 'Football', 'Future', 'Games', 'Gandhi', 'Homer', 'Horror', 'Hugo', 'Ibsen', 'Journey', 'Kafka', 'King', 'Lahiri', 'Larsson', 'Learn', 'Literary Fiction', 'Make', 'Manage', 'Marquez', 'Money', 'Mystery', 'Negotiate', 'Painting', 'Philosophy', 'Photography', 'Poetry', 'Production', 'Programming', 'React', 'Redux', 'River', 'Robotics', 'Rowling', 'Satire', 'Science Fiction', 'Shakespeare', 'Singh', 'Swimming', 'Tale', 'Thrun', 'Time', 'Tolstoy', 'Travel', 'Ultimate', 'Virtual Reality', 'Web Development', 'iOS'
 
-* book: `<Object>` containing at minimum an `id` attribute
-* shelf: `<String>` contains one of ["wantToRead", "currentlyReading", "read"]  
-* Returns a Promise which resolves to a JSON object containing the response data of the POST request
+So you might find that your query for a book title or author did not match any results. Use these terms to search for books only. In the results you will see that any books that are shown in your book shelf will have that shelf set when clicking on the down-pointed arrow. If you select another book shelf (or any, for books that show "none"), it will appear in your bookshelf;
+you can see this by selecting the back arrow on the search bar, or by clicking the  back button in your browser (or just deleting the /search string in the URL).
 
-### `search`
 
-Method Signature:
+** **
+### Libraries ##
 
-```js
-search(query)
-```
+**Prop Types**
+Used for documenting and restricting types passed to components.
+For more information please go [here](https://www.npmjs.com/package/prop-types).
 
-* query: `<String>`
-* Returns a Promise which resolves to a JSON object containing a collection of a maximum of 20 book objects.
-* These books do not know which shelf they are on. They are raw results only. You'll need to make sure that books have the correct state while on the search page.
+**React**
+The engine behind the the React.js library. Allows us to define components, elements, lifecycle hooks, etc. For more information please go [here](https://www.npmjs.com/package/react).
 
-## Important
-The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
+**React DOM**
+Allows us to use the React library with the DOM. For more information please go [here](https://www.npmjs.com/package/react-dom).
 
-## Create React App
+**React Router DOM**
+Used for handling URL re-routing, allowing us to create single page applications but maintining the URL structure.
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+**React Notify Toast**
+Used to show notifications (UI messages) to the user.
 
-## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+
+
+
+
+
+
+

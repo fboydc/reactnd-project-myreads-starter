@@ -5,9 +5,11 @@ Props received (see prop-types):
 1. shelf - Shelf
 2. updateBooks - function
 
-Child Components:
-1. Book* - props passed: book (Book), updateBooks (function), options (array <object>)
+Methods:
+none
 
+React Methods:
+render - see method description below
 ************************************************************************************************************/
 
 import React, { Component } from 'react';
@@ -18,7 +20,15 @@ import Book from './Book';
 class BookShelf extends Component {
 
 
-
+  /***************************************************************************************
+  Name: render
+  Description:
+  Renders the template for our Book objects.
+   Child Components:
+   1. Book* - props passed: book (Book), updateBooks (function), options (array <object>)
+      Note: The number of Book children will be equal to the Book elements in the book property
+      in the BookShelf object.
+  **************************************************************************************/
 	render(){
 
 		return (
