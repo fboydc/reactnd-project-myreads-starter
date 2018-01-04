@@ -205,10 +205,10 @@ class BooksApp extends React.Component {
 
      <div className="app">
         <Notifications />
-        <Route exact path="/" render={() => (
+        <Route exact path={process.env.PUBLIC_URL + '/'} render={() => (
             <ShowBooks  updateBooks={this.updateBooks.bind(this)} shelves={this.state.shelves} />
           )}/>
-        <Route path="/search" render={()=>(
+        <Route path={process.env.PUBLIC_URL + '/search'} render={()=>(
             <SearchBook updateBooks={this.updateBooks.bind(this)} shelves={this.state.shelves}/>
         )}/>
       </div>
